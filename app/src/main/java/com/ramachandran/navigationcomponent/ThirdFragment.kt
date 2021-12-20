@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import kotlinx.android.synthetic.main.fragment_third.view.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class ThirdFragment : BaseFragment() {
-
+    private val args : ThirdFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTitle("Third Fragment")
@@ -31,10 +34,12 @@ class ThirdFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController : NavController = Navigation.findNavController(view)
+        val data=args.returnData
+        view.text3.text =data
         view.setOnClickListener {
+            val direction=ThirdFragmentDirections.actionThirdFragmentToFirstFragment("Home Screen")
             val navOptions : NavOptions=NavOptions.Builder().setPopUpTo(R.id.firstFragment,true).build()
-            navController.navigate(R.id.action_thirdFragment_to_firstFragment,null,navOptions)
+            findNavController().navigate(direction,navOptions)
         }
     }
 

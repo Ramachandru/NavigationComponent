@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_second.view.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class SecondFragment :BaseFragment() {
-
+    private val args: SecondFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTitle("Second Fragment")
@@ -31,12 +33,13 @@ class SecondFragment :BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController=Navigation.findNavController(view)
-        val value= arguments?.getString("flag")
+
+        val value= args.dataName
         view.text2.text=value
         view.setOnClickListener {viewObject ->
+           val action= SecondFragmentDirections.actionSecondFragmentToThirdFragment("Very Success")
             val navOptions=NavOptions.Builder().setPopUpTo(R.id.secondFragment,true).build()
-            navController.navigate(R.id.action_secondFragment_to_thirdFragment,null,navOptions)
+            findNavController().navigate(action,navOptions)
         }
     }
 

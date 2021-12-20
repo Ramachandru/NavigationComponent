@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.fragment_first.view.*
 
@@ -15,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_first.view.*
  * A simple [Fragment] subclass.
  */
 class FirstFragment : BaseFragment() {
-
+    private val args: FirstFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -37,12 +39,11 @@ class FirstFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController=Navigation.findNavController(view)
+        val homeValue=args.homeData
+        view.text1.text=homeValue
         view.text1.setOnClickListener {
-            val bundel=Bundle()
-            bundel.putString("flag","Ram")
-
-            navController.navigate(R.id.action_firstFragment_to_secondFragment,bundel)
+            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment("ramu got success")
+            findNavController().navigate(action)
         }
     }
 

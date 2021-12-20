@@ -14,7 +14,7 @@ import android.widget.TextView
 open class BaseFragment : Fragment() {
 
    fun setTitle(title : String){
-       (activity as MainActivity).supportActionBar?.title = title
+       (activity as? MainActivity)?.supportActionBar?.title = title
    }
 
 }

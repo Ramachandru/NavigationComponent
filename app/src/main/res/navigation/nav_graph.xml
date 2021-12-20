@@ -13,6 +13,11 @@
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
+        <argument
+            android:name="homeData"
+            app:argType="string"
+            android:defaultValue="First" />
+
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
@@ -22,6 +27,11 @@
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
             app:destination="@id/thirdFragment" />
+        <argument
+            android:name="dataName"
+            app:argType="string"
+            android:defaultValue="noData" />
+
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
@@ -31,5 +41,9 @@
         <action
             android:id="@+id/action_thirdFragment_to_firstFragment"
             app:destination="@id/firstFragment" />
+        <argument
+            android:name="returnData"
+            app:argType="string"
+            android:defaultValue="none" />
     </fragment>
 </navigation>
